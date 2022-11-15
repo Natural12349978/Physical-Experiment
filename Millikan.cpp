@@ -4,6 +4,7 @@ using namespace std;
 #include <cmath>
 #include<iomanip>
 #include <fstream>
+#include <stdlib.h>
 
 #define RHO 981         //油密度。千克每立方米
 #define G 9.7915        //引力常数。米每二次方秒
@@ -19,6 +20,7 @@ void f(double t, int u, double &q, int &n, float &x);       //t是下落时间�
 
 int main()
 {
+    system("chcp 65001");
     double t;       //下落时间
     int u;          //极板电压
     ifstream fin ("data.txt");
@@ -44,7 +46,7 @@ int main()
 
             avg_u += u;
             avg_t += t;
-            if (cnt++ == 2)
+            if (cnt++ == (N - 1))
             {
                 avg_t /= cnt;
                 avg_u /= cnt;
@@ -66,9 +68,16 @@ int main()
         }
         fin.close();
         fout.close();
+        cout << "实验数据已成功完成分析，并导入到同路径下outdata.txt" << endl;
+        cout << "请按任意键退出" << endl;
+        system("pause>nul");
     }
     else
-        cout << "wrong" << endl;
+    {
+        cout << "wrong：大概是未获取到data.txt数据文本" << endl;
+        cout << "按任意键将终止，请确保无误后再运行" << endl;
+        system("pause>nul");
+    }
 
     // cout << q << "\t" << n << "\t";
     // cout << fixed << setprecision(2) << x << endl;
