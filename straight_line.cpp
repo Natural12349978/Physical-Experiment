@@ -78,9 +78,15 @@ int main()
                 double h = Y_E * k / ZETA;
                 cout << endl << "实验测定的普朗克常数：" << h << endl;
                 cout << "误差：" << abs(h - H) / H * 100 << '%' << endl;
+                delete [] num_x;
+                delete [] num_y;
             }
             else
+            {
+                delete [] num_x;
+                delete [] num_y;
                 return 0;
+            }
         }
         else
             cout << endl << "相关系数绝对值小于0.75，不近似于直线" << endl;
