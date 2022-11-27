@@ -108,12 +108,61 @@ m1(g) m2(g) 柱(g) 柱(cm)
 ## 自由落体法测定重力加速度 ##
 应用`g.exe`(<-g.cpp)  
 `data.txt`数据格式及单位如下，可放在桌面上  
-ps:g0不用输入。本校地区g0取9.792m/s²
+ps:g0不用输入。本校地区g0取9.792m/s²  
 ```
 s0[OA](cm)
 s2[AC](cm) {t2(s)} × 3
 { s1[AB](cm) {t1(s)} × 3 } × n（组数不限，正整数）
 ```
+
+## 拉伸法测量金属丝的弹性模量 ##
+应用`弹性模量E.exe`(<-E.cpp)  
+按照提示进行窗口输出  
+`data.txt`数据格式及单位如下，可放在桌面上  
+```
+光杠杆短臂长(cm) 长臂长(cm) 金属丝长度(cm)
+金属丝上部直径(mm) 中部直径(mm) 下部直径(mm)
+7.246 126.80 80.70
+0.503 0.497 0.500
+1.0 8.5 16.0 23.0 30.0 37.0
+30.5 23.5 16.5 9.0 1.5 0.0
+```
+最后的输出示例：  
+>PS：  
+此输出示例Δ(Δn)被我从0.044手动修改成0.05，最终才与书上结果更近似。(源代码也有体现)  
+其余误差均来自计算机二进制数据保存以及运算过程未近似导致的  
+最终实际运行时Δ(Δn)也未近似。  
+但最大相对误差和最大绝对误差严格按照向上进位的方式进行数据处理  
+```
+荷重砝码质量0kg时刻度n的平均值(mm):0
+荷重砝码质量1kg时刻度n的平均值(mm):1.25
+荷重砝码质量2kg时刻度n的平均值(mm):8.75
+荷重砝码质量3kg时刻度n的平均值(mm):16.25
+荷重砝码质量4kg时刻度n的平均值(mm):23.25
+荷重砝码质量5kg时刻度n的平均值(mm):30.25
+荷重砝码质量6kg时刻度n的平均值(mm):37
+
+荷重砝码质量差3kg时的读数差:
+n4 - n1 = 2.2	cm
+n5 - n2 = 2.15	cm
+n6 - n3 = 2.075	cm
+Δn平均值 = 2.142
+
+Δn的绝对误差:
+Δ(Δn)1 = 0.058	cm
+Δ(Δn)2 = 0.008	cm
+Δ(Δn)3 = 0.067	cm
+Δ(Δn) = 0.044	cm
+
+弹性模量E(N·m²):	1.97465e+11
+E的最大相对误差为:	3.11592%
+向上近似为:	3.2%
+E的最大绝对误差为:	6.31888e+09
+E的测量结果为E = (1.97 +- 0.07) e+11N·m(-2)
+
+```
+>参考资料：  
+[MATLAB、C++、OpenCV、Python、Python-Numpy近似值(取整)求取函数总结【round()、ceil()、floor()、fix()】](http://t.csdn.cn/ig5kA)  
 
 
 </br>
@@ -127,3 +176,57 @@ s2[AC](cm) {t2(s)} × 3
 [^_^](如何联系我？可以在github留言。本文档尾也有其他方式)  
 <!-- [帖子题主是我~](https://bbs.mihoyo.com/ys/article/17396735) -->
 <!-- [网易云音乐~](https://music.163.com/#/user/home?id=587000409) -->
+
+
+
+<!-- #include <iostream>
+using namespace std;
+#include <fstream>
+#include <stdlib.h>
+#include <cmath>
+
+int main()
+{	//输入输出文件打开##################
+	system("chcp 65001");
+
+    string path = "data.txt";
+    ifstream fin (path);
+
+	string string1 = getenv("homePath");
+	string string2 = "/Desktop/";
+
+    if (!fin)
+    {
+        path = (string1 + string2 + path).c_str();
+        cout << "正在桌面路径\"" << path << "\"搜索数据文件" << endl;
+        fin.clear();
+        fin.open(path);
+    }
+
+	//这些特例将不进行测试。
+	string path_out = "outdata.txt";
+	path_out = (string1 + string2 + path_out).c_str();
+	cout << "将结果导出到" << path_out << endl;
+	ofstream fout (path_out);
+	if (!fout)
+	{
+		cout << "输出到桌面失败，将输出到相对路径目录下" << endl;
+		fout.clear();
+		fout.open("outdata.txt");
+		if (!fout)
+			cout << "wrong" << endl;
+	}
+	//输入输出文件打开完毕############
+
+	if (fin && fout)
+	{
+
+		fin.close();
+		fout.close();
+	}
+	else
+		cout << "wrong" << endl;
+
+	system("pause");
+	return 0;
+} -->
