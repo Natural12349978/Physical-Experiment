@@ -3,6 +3,7 @@ using namespace std;
 #include <fstream>
 #include <stdlib.h>
 #include <cmath>
+#include <iomanip>
 
 void out_line_exp(ofstream &fout, double *x, double *y, int cnt, double &k, double &b);
 
@@ -55,7 +56,9 @@ int main()
             double tmp;
             fin >> num_x[i] >> num_y[i] >> tmp;
             num_y[i] = (num_y[i] + tmp) / 2;
+            fout << setw(3) << num_x[i] << "℃时平均刻度n为\t" << num_y[i] << "\tmm" << endl;
         }
+        fout << endl;
         double k, b;
         out_line_exp(fout, num_x, num_y, cnt, k, b);
 
