@@ -3,6 +3,9 @@
 <!-- 我永远喜欢牛杂师傅！！！！！ -->
 <!-- 干内，github网页md语法不支持h5标签 -->
 #### <font color = blue>作者写在前面：</font> ####
+<font size='5'>如果出现找不到libstdc++-6.dll无法继续执行代码的问题</font>  
+![问题图片](suoyin/4f74e7eaeefa3d05b83fdd5a97b0126.png)  
+请下载code中的libstdc++-6.dll复制到C:\Windows\System32  
 * 瞎搞的
 * 如有大佬路过，请手下留情  
 * 登录GitHub并不是很流畅，所以。。。
